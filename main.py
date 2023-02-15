@@ -55,7 +55,8 @@ load_button.on_click(lambda: on_button_click(stock1_text.value, stock2_text.valu
 #create a column layout, the arguments will be stacked on top of eachother
 layout = column(stock1_text, stock1_text, date_picker_start, date_picker_end, indicator_choice, load_button)
 
-#build an interactive UI around the Plots
+curdoc().clear()
+curdoc().add_root(layout)
 
 
 
