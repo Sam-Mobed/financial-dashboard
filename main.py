@@ -18,7 +18,7 @@ yfinance to extract stock data from the Yahoo finance API
 
 #load the data from the API
 def load_data(ticker1, ticker2, start, end):
-    df1 = yf.downloard(ticker1, start, end)
+    df1 = yf.download(ticker1, start, end)
     df2 = yf.download(ticker2, start, end)
     return df1, df2
 
@@ -44,6 +44,24 @@ def plot_data(data, indicators, sync_axis=None):
     #plot the actual candlestick,vertical for every gain and every loss
     plot.vbar(df.index[gain], width_candlestick, df.Open[gain], df.Close[gain], fill_color= "#00ff00", line_color= "#00ff00")
     plot.vbar(df.index[loss], width_candlestick, df.Open[loss], df.Close[loss], fill_color= "#ff0000", line_color= "#ff0000")
+
+    for indicator in indicators:
+        if indicator == "30 Day SMA":
+            df['SMA30'] = df['Close'].rolling(30).mean()
+            plot.line(df.index, df.SMA30, color="purple", legend_label="30 Day SMA")
+        elif indicator == "100 Day SMA":
+            df['SMA100'] = df['Close'].rolling(100).mean()
+            plot.line(df.index, df.SMA100, color="blue", legend_label="100 Day SMA")
+        elif indicator == "Linear Regression Line":
+            par = np.polyfit(range(len(df.index.values)), df.Close.values, 1, full=True)
+            slope = par[0][0]
+            intercept = par[0][1]
+            y_pred = [slope * i + intercept for i in range (len(df.index.values))]
+            plot.segment(df.index[0], y_pred[0], df.index[-1], y_pred[-1], legend_label="Linear Regression", color="Red")
+
+        plot.legend.location = "top_left"
+        plot.legend.click_policy = "hide"
+
 
     return plot
 
@@ -79,7 +97,7 @@ load_button = Button(label="Load Data", button_type="success")
 load_button.on_click(lambda: on_button_click(stock1_text.value, stock2_text.value, date_picker_start.value,date_picker_end.value,indicator_choice.value))
 
 #create a column layout, the arguments will be stacked on top of eachother
-layout = column(stock1_text, stock1_text, date_picker_start, date_picker_end, indicator_choice, load_button)
+layout = column(stock1_text, stock2_text, date_picker_start, date_picker_end, indicator_choice, load_button)
 
 curdoc().clear()
 curdoc().add_root(layout)

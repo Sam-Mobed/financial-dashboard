@@ -1,0 +1,6 @@
+#- first move everything into if __name__==__main__
+
+#- implement fancier technical analysis plots instead of having a simple regression line
+
+#add more widgets, more UI elements, more indicators, mthe ability to compare as many stocks as you want (not as many, but like up to 6 or something), have a pie chart to show
+#the diversification of your portfolio, and maybe some other stuff.
