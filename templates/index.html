@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <title>Financial Dashboard</title>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top" id="navbar">
+        <div class="container-fluid justify-content-center">
+            <a class="navbar-brand font-weight-bold">Plutus.io</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/Sam-Mobed">
+                        <img src="{{ url_for('static', filename='images/GitHub-Mark.png') }}" class="img-fluid" alt="Responsive image" style="width: 65px;border-radius: 10px;">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/in/sam-mobed-541332212/">
+                        <img src="{{ url_for('static', filename='images/Linkedin-Logo.jpg') }}" class="img-fluid" alt="Responsive image" style="width: 75px;border-radius: 10px;">
+                    </a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="text-dark" style="margin-top: 120px; margin-left: 30px; margin-right: 30px; border: 2px solid lightgreen; padding: 1%; border-radius: 10px;">
+        <h1>Welcome &#x1F44B;</h1>
+        <p>Glad to have you here. &#x1F600; Plutus.io is financial dashboard designed to help sharpen your decision-making skills as an investor.
+            With a host of features and visualizations, you can easily track and analyze the stocks of your choice over time. This personnalized web application is built using Flask, 
+            and styled with Bootstrap to create an aesthetic and interactive user experience.
+    </div>
+
+
+
+    
+    
+
+    <div class="position-fixed fixed-bottom mb-3" style="margin-left: 20px;">
+        <button type="button" class="btn btn-warning" id="changeColorButton">&#x1F313;</button>
+    </div>
+    
+
+    <script>
+		var body = $('body');
+		var button = $('#changeColorButton');
+        var div = $('div');
+
+		button.click(function() {
+			if (body.hasClass('bg-light')) {
+				body.removeClass('bg-light');
+				body.addClass('bg-dark');
+                div.removeClass('text-dark');
+                div.addClass('text-light');
+				button.html('&#x1F31E;');
+			} else {
+				body.removeClass('bg-dark');
+				body.addClass('bg-light');
+                div.removeClass('text-light');
+                div.addClass('text-dark');
+				button.html('&#x1F31A;');
+			}
+        })
+    </script>
+    
+</body>
+</html>

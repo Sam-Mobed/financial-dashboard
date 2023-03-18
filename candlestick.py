@@ -70,7 +70,7 @@ def on_button_click(ticker1, ticker2, start, end, indicators):
     df1, df2 = load_data(ticker1,ticker2,start,end)
     plot1 = plot_data(df1, indicators)
     plot2 = plot_data(df2, indicators, sync_axis=plot1.x_range)
-    curdoc.clear()
+    #curdoc().clear()
     curdoc().add_root(layout)
     curdoc().add_root(row(plot1,plot2))
 
